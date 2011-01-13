@@ -2,7 +2,7 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-.stream_element.person{:id => person.id}
+.stream_element{:id => person.id}
 
   - if search
     .right{:style=>"display:inline;"}
@@ -23,7 +23,7 @@
   = person_image_link(person)
 
   .content
-    .from
+    %span.from
       =person_link(person)
 
     .info

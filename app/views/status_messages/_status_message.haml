@@ -7,5 +7,5 @@
 - if photos.count > 0
   .photo_attachments
     - for photo in photos
-      = link_to (image_tag photo.url(:thumb_medium)), photo_path(photo)
+      = link_to (image_tag photo.url(photo_size)), photo_path(photo)
 

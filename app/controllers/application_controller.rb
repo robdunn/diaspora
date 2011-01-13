@@ -3,10 +3,9 @@
 #   the COPYRIGHT file.
 
 class ApplicationController < ActionController::Base
-  #has_mobile_fu
+  has_mobile_fu
   protect_from_forgery :except => :receive
 
-  #before_filter :mobile_except_ipad
   before_filter :set_contacts_notifications_and_status, :except => [:create, :update]
   before_filter :count_requests
   before_filter :set_invites
@@ -19,16 +18,6 @@ class ApplicationController < ActionController::Base
       @all_aspects = current_user.aspects.fields(:name, :contacts)
       @aspects_dropdown_array = @all_aspects.collect{|x| [x.to_s, x.id]}
       @notification_count = Notification.for(current_user, :unread =>true).all.count
-    end
-  end
-
-  def mobile_except_ipad
-    if is_mobile_device?
-      if request.env["HTTP_USER_AGENT"].include? "iPad"
-        session[:mobile_view] = false
-      else
-        session[:mobile_view] = true
-      end
     end
   end
 

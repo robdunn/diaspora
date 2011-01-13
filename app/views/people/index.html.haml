@@ -9,10 +9,7 @@
   = include_javascripts :people
 
 .span-24.last
-  - if params[:q].blank?
-    %h2
-      =t('.no_results')
-  - else
+  - unless params[:q].blank?
     %h2#search_title
       =t('.results_for')
       %span.term
@@ -28,7 +25,7 @@
   - else
     #people_stream.stream
       - for hash in @hashes
-        = render :partial => 'people/person', :locals => hash
+        = render :partial => 'people/person', :locals => hash.merge(:search => !params[:q].blank?)
 
     = will_paginate @people
 

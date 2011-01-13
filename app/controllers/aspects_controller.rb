@@ -20,7 +20,6 @@ class AspectsController < ApplicationController
     if current_user.getting_started == true || @aspects.blank?
       redirect_to getting_started_path
     else
-
       @aspect_ids = @aspects.map{|a| a.id}
       post_ids = @aspects.map{|a| a.post_ids}.flatten!
 
@@ -31,8 +30,8 @@ class AspectsController < ApplicationController
       @contact_hashes = hashes_for_contacts @contacts
       @aspect_hashes = hashes_for_aspects @aspects, @contacts, :limit => 16
 
+      @aspect = @aspects.first if @aspects.length == 1
       @aspect = :all unless params[:a_ids]
-
     end
   end
 

@@ -9,17 +9,24 @@ class PeopleController < ApplicationController
   respond_to :json, :only => [:index, :show]
 
   def index
-    @aspect = :search
 
-    @people = Person.search(params[:q]).paginate :page => params[:page], :per_page => 15, :order => 'created_at DESC'
+    unless params[:q].blank?
+      @people = Person.search(params[:q]).paginate :page => params[:page], :per_page => 15, :order => 'created_at DESC'
+    else
+      aspect_ids = current_user.aspects.map{|a| a.id}
+      people_ids = Contact.all(:aspect_ids.in => aspect_ids)
+      people_ids.map!{|p| p.person_id}
+      @people = Person.all(:id.in => people_ids).paginate :page => params[:page], :per_page => 15, :order => 'last_name DESC'
+    end
+=begin
     if @people.count == 1
       redirect_to @people.first
     else
-      @hashes = hashes_for_people(@people, @aspects)
-      #only do it if it is an email address
-      if params[:q].try(:match, Devise.email_regexp)
-        webfinger(params[:q])
-      end
+=end
+    @hashes = hashes_for_people(@people, @aspects)
+    #only do it if it is an email address
+    if params[:q].try(:match, Devise.email_regexp)
+      webfinger(params[:q])
     end
   end
 

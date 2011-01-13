@@ -1,0 +1,8 @@
+-#   Copyright (c) 2010, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+
+- for photo in photos
+  = link_to (image_tag photo.url(:thumb_small), "data-message-id" => photo.status_message_id ), photo_path(photo)
+

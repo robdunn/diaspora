@@ -1,5 +1,11 @@
 @import "mixins"
 
+a
+  :text
+    :decoration none
+  :font
+    :weight normal
+
 #landing_content
   :text-align center
 
@@ -39,164 +45,140 @@
   label
     :font-weight bold
 
-ul
-  :list-style none
+#publisher
+  :display none
 
-.avatar
-  :width 40px
-  :height 40px
-  :padding 0
+.stream_element,
+.comment
+  *
+    :max-width 100%
 
-li.message
-  :width 90%
-  :position relative
-  :margin
-    :top 1em
-  :padding
-    :bottom 1.5em
-  :border
-    :bottom 1px #eee solid
-  :line-height 19px
-  :font
-    :family 'Arial', 'Helvetica', sans-serif
-  :color #777
+  :min-height 34px
 
   .avatar
     :float left
+    :height 34px
+    :width 34px
+
+  .from
     :margin
-      :right 15px
+      :bottom 4px
+    a
+      :color #000
 
   .content
-    :margin
-      :top 0
     :padding
-      :left 65px
+      :left 41px
 
-    .aspect
-      :display inline
+  :border
+    :bottom 1px solid #eee
+
+  :padding 6px 6px
+    :right 8px
+
+  .info
+    :margin
+      :top 0.5em
+    :font
+      :size smaller
+
+  .photo_attachments
+    :margin
+      :top 6px
+
+.stream_element.person
+  .from
+    :font
+      :size larger
+
+.time
+  :color #ccc
+  :font
+    :size smaller
+    :weight bold
+
+.info
+  :font
+    :size smaller
+
+#show_content
+  :padding 12px
+  :border
+    :bottom 1px solid #bbb
+
+  img
+    :max-width 100%
+
+  .photo
+    :text-align center
 
 
-    :color #444
+ul
+  :margin 0
+  :padding 0
+  :list
+    :style none
+
+#author_info.show
+  :margin
+    :bottom 12px
+
+  img
+    :float left
+    :height 24px
+    :width 24px
+    :margin
+      :right 6px
+
+  h3
+    :padding
+      :top 1px
+    :margin 0
+
+#author_info.profile
+  :background
+    :color #eee
+  :border
+    :bottom 2px solid #ccc
+  :height 100px
+  :padding 6px
+  :margin
+    :bottom 6px
+
+  img
+    :float left
+    :height 100px
+    :width 100px
+    :padding
+      :right 12px
+
+  .content
+    :padding
+      :left 110px
+
+  .description
     :font
       :weight normal
-      :size 14px
+      :size small
+    :color #999
 
-    .stream_photo
-      :float left
-      :margin 
-        :top 6px
+.comments
+  :border
+    :top 2px solid #D2DBE1
+  :background
+    :color #EDF5FB
 
-    .photo_description
-      :margin 
-        :top 6px
-      :padding
-        :left 220px
-      :min-height 185px
-      :color #888
-      :font
-        :style italic
+.stream_marker
+  :background
+    :color #eee
+  :border
+    :bottom 1px solid #aaa
+    :top 1px solid #ccc
+  :font
+    :weight bold
+    :size smaller
+  :color #666
+  :padding 3px 6px
 
-    .small_text
-      :font
-        :size 10px
-
-    div.info
-      :color #999
-      :font-size smaller
-      a
-        :color #ccc
-      .time
-        a
-          :color #bbb
-        :font
-          :weight bold
-        :margin
-          :right 5px
-      
-  &:hover
-    div.info, .time
-      a
-        :color #107FC9
-        &:hover
-          :color #22AAE0
-        &:active
-          :color #005D9C
-
-
-.right .reshare_pane .reshare_button a.inactive
-  :color #ccc
-  &:hover
-    :text
-      :decoration none
-  :cursor default
-
-.right .reshare_pane .reshare_button
-  :padding 5px
-  &.active
-    :background
-      :color #333
-
-    :-webkit-border-radius 5px 5px 0 0
-    :-moz-border-radius 5px 5px 0 0
-    :border-radius 5px 5px 0 0
-
-    a
-      :color #fff
-      :text-shadow none
-
-.right .reshare_pane
-  :margin
-    :left 5px
-    :right 5px
-  :display inline
-  :position relative
-
-
-  ul.reshare_box
-    :width 150px
-    :display none
-    :z-index 10
-    :position absolute
-    :margin
-      :top 0
-    :padding 0
-
-    :background
-      :color #fafafa
-
-    :list
-      :style none
-
-    :border 5px solid #333
-
-    :text-shadow 0 2px #fff
-    :color #000
-
-    > li
-      :font
-        :weight bold
-      :color #ccc
-      :border
-        :top 1px solid #fff
-        :bottom 1px solid #ccc
-
-      &:first-child
-        :border
-          :top none
-      &:last-child
-        :border
-          :bottom none
-      a
-        :display block
-        :height 100%
-        :padding 2px 5px
-        :cursor default
-
-        &:hover
-          :background
-            :color #eee
-          :text
-            :decoration none
-        &:active
-          :background
-            :color #ccc
+.right
+  :float right

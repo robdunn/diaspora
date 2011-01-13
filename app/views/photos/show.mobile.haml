@@ -1,0 +1,29 @@
+-#   Copyright (c) 2010, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+- content_for :head do
+  = include_javascripts :photos
+
+/#author_info
+/= person_image_tag @photo.person
+/= image_tag('http://www.google.com/images/logos/ps_logo2.png', :height => 50, :width => 50)
+/= link_to @photo.person.name
+
+#show_content{:data=>{:guid=>@photo.id}}
+  = render 'shared/author_info', :person => @photo.person, :post => @photo
+
+  .photo
+    = image_tag @photo.url(:thumb_large)
+
+    = link_to image_tag(@prev_photo.url(:thumb_small)), @prev_photo, :rel => 'prefetch', :id => 'photo_show_left'
+    = link_to image_tag(@next_photo.url(:thumb_small)), @next_photo, :rel => 'prefetch',  :id => 'photo_show_right'
+
+  .info
+    .right
+      %b= "↓ #{@comment_hashes.length} #{t('_comments').downcase}"
+    %span.time
+      = how_long_ago(@photo)
+
+.stream.show{:data=>{:guid=>@parent.id}}
+  = render "comments/comments", :post_id => @parent.id, :comment_hashes => @comment_hashes, :always_expanded => true

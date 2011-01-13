@@ -2,10 +2,12 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-= select_tag "aspect_picker", aspect_select_options(@aspects, @aspect)
 
-%div{:data => {:role => 'content'}}
-  %div{:data => {:role => 'fieldcontain'}}
-    =render 'shared/publisher', :aspect => @aspect
+= select_tag "aspect_picker", aspect_select_options(@all_aspects, @aspect)
 
-= render 'shared/stream', :posts => @post_hashes
+#aspect_stream_container
+  = render 'aspect_stream',
+    :aspect => @aspect,
+    :aspect_ids => @aspect_ids,
+    :post_hashes => @post_hashes
+

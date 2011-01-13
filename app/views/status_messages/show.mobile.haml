@@ -1,0 +1,26 @@
+-#   Copyright (c) 2010, Diaspora Inc.  This file is
+-#   licensed under the Affero General Public License version 3 or later.  See
+-#   the COPYRIGHT file.
+
+#show_content{:data=>{:guid=>@status_message.id}}
+  = render 'shared/author_info', :person => @status_message.person, :post => @status_message
+
+  %p
+    = markdownify(@status_message.message, :youtube_maps => @status_message[:youtube_titles])
+
+  - for photo in @status_message.photos
+    = link_to (image_tag photo.url(:thumb_small)), photo_path(photo)
+
+  .info
+    .right
+      %b= "↓ #{@comment_hashes.length} #{t('_comments').downcase}"
+    %span.time
+      = how_long_ago(@status_message)
+
+/= link_to t('.permalink'), post_path(@status_message) if @status_message.public
+/- if current_user.owns? @status_message
+/= link_to t('.destroy'), @status_message, :confirm => t('are_you_sure'), :method => :delete
+
+
+.stream.show{:data=>{:guid=>@status_message.id}}
+  = render "comments/comments", :post_id => @status_message.id, :comment_hashes => @comment_hashes, :always_expanded => true

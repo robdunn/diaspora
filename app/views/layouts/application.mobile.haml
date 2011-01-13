@@ -10,6 +10,8 @@
 
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
 
+    %link{:rel => 'apple-touch-icon', :href => '/apple-touch-icon.png'}
+
     = include_javascripts :mobile
     = stylesheet_link_tag 'vendor/jquery_mobile.min', 'mobile'
     = csrf_meta_tag
@@ -20,9 +22,24 @@
     = yield(:head)
 
   %body
-    #content{:data => {:role => 'page'}}
+    %div{:data => {:role => 'page'}}
       %div{:data => {:role => 'header', :nobackbtn => 'true'}}
-        %h4
+        %h1
           DIASPORA*
-        /= link_to image_tag('logo_large.png', :height => "32px", :width => "321px", :class => "diaspora_header_logo"), root_path
+
+        - if current_user
+          %div{:data => {:role => "navbar"}}
+            %ul
+              %li
+                = link_to "Home" , root_path
+              %li
+                = link_to "Profile" , current_user.person
+              %li
+                = link_to "Contacts" , people_path
+              %li
+                = link_to "Notifications" , notifications_path
+
       = yield
+
+      %div{:data => {:role => 'footer', :nobackbtn => 'true'}}
+        = link_to 'logout', destroy_user_session_path
