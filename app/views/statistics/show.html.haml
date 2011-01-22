@@ -2,11 +2,16 @@
 -#   licensed under the Affero General Public License version 3 or later.  See
 -#   the COPYRIGHT file.
 
-%h3 Viewing statistic
+%h3
+  = "Viewing #{@statistic.class}"
 
-%h2
+%h4
   = "Users in sample: #{@statistic.users_in_sample}"
-= image_tag(@google_chart_url)
+
+%h4
+  = "Average: #{@statistic.average}"
+
+= image_tag(@google_chart_url) unless @statistic.users_in_sample == 0
 
 %br
 = link_to 'all statistics', statistics_path

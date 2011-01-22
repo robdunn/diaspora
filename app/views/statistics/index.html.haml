@@ -3,10 +3,12 @@
 -#   the COPYRIGHT file.
 
 %h1 Statistics
-
+ 
+=link_to "generate new statistic", new_statistic_path, :class => 'button'
+  
 %ul
   - for statistic in @statistics
-    %li= link_to statistic.created_at, statistic
+    %li= link_to statistic.created_at, statistic_path(statistic)
 
 = will_paginate @statistics
 

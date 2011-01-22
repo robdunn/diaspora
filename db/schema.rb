@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110120182100) do
+ActiveRecord::Schema.define(:version => 20110122002231) do
 
   create_table "aspect_memberships", :force => true do |t|
     t.integer  "aspect_id"
@@ -68,11 +68,11 @@ ActiveRecord::Schema.define(:version => 20110120182100) do
   add_index "contacts", ["user_id", "person_id"], :name => "index_contacts_on_user_id_and_person_id", :unique => true
 
   create_table "data_points", :force => true do |t|
-    t.string   "key"
-    t.integer  "value"
     t.integer  "statistic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data_key"
+    t.integer  "data_value"
   end
 
   add_index "data_points", ["statistic_id"], :name => "index_data_points_on_statistic_id"
