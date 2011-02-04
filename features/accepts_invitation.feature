@@ -11,6 +11,7 @@ Feature: invitation acceptance
       Then I should be on the getting started page
       And I should see "Welcome to Diaspora!"      
       And I should see "ohai"
+     When I follow "Save and continue"
       And I fill in "profile_first_name" with "O"
       And I fill in "profile_last_name" with "Hai"
       And I fill in "profile_gender" with "guess!"
@@ -30,6 +31,7 @@ Feature: invitation acceptance
       Then I should be on the getting started page
       And I should see "Welcome to Diaspora!"      
       And I should see "ohai"
+     When I follow "Save and continue"
       And I fill in "profile_first_name" with "O"
       And I fill in "profile_last_name" with "Hai"
       And I fill in "profile_gender" with "guess!"
