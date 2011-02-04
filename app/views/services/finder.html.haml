@@ -18,7 +18,7 @@
 
   .contact_list
     - if @friends.keys.length > 0
-      = render 'services/finder', :locals => {:friends => @friends}
+      = render :partial => 'services/finder', :locals => {:friends => @friends}
     - else
       %br
       %br

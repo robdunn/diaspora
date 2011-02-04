@@ -17,9 +17,9 @@
         - person = pending_req.sender
         
         = render :partial => 'people/person', :locals => {:request => pending_req, :person => person, :contact => nil}
-    -if @friends != {}
+    -unless @friends.blank?
       .contact_list
-        = render 'services/finder', :locals => {:friends => @friends}
+        = render :partial => 'services/finder', :locals => {:friends => @friends}
 
 
 .submit_block
