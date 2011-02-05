@@ -20,6 +20,9 @@
           = render :partial => 'people/person', :locals => {:request => pending_req, :person => person, :contact => nil}
     -unless @friends.blank?
       %br
+      = t('services.finder.invite_your_friends_from', :service => "facebook".titleize)
+      = t('shared.invitations.invitations_left', :count => invites) 
+      %br
       .contact_list
         = render :partial => 'services/finder', :locals => {:friends => @friends, :getting_started => true}
 
