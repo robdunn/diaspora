@@ -79,6 +79,14 @@ JSON
         p.save
         @service.finder.values.first[:person].should be_nil
       end
+
+      it 'contains a request object if one has been sent' do
+        request = Request.diaspora_initialize(:from => @user2.person, :to => @user.person, :into => @user2.aspects.first)
+        Postzord::Receiver.new(@user, :object => request, :person => @user2.person).receive_object
+        Request.count.should == 1
+        @service.finder.values.first[:request].should == request
+      end
+      
       it 'contains a contact object if connected' do
         connect_users(@user, @user.aspects.first, @user2, @user2.aspects.first)
         @service.finder.values.first[:contact].should == @user.reload.contact_for(@user2.person)

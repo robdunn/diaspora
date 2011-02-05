@@ -45,6 +45,10 @@ class Services::Facebook < Service
       person_ids_and_uids[s.user.person.id] = s.uid
     end
 
+    requests = Request.where(:recipient_id => self.user.person.id, :sender_id => person_ids_and_uids.keys).all
+    requests.each{|r| data_h[person_ids_and_uids[r.sender_id]][:request] = r}
+
+
     contact_objects = self.user.contacts.where(:person_id => person_ids_and_uids.keys)
     contact_objects.each{|c| data_h[person_ids_and_uids[c.person_id]][:contact] = c}
 
