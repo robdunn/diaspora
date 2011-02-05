@@ -86,6 +86,7 @@ class UsersController < ApplicationController
     if @step == 3
       service = current_user.services.where(:type => "Services::Facebook").first
       @friends = service ? service.finder : {}
+      @invites = @user.invites
     elsif @step == 4
       @user.getting_started = false
       @user.save
