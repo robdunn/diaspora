@@ -2,19 +2,21 @@
   -if friend[:person]
     = render :partial => 'people/person', :locals => {:person => friend[:person], :contact => friend[:contact], :request => friend[:request]}
   -else
-    .right
-      -if friend[:invitation_id]
-        = t('invitations.new.already_invited')
-        %br
-        = link_to t('.resend'), service_inviter_path(:uid => uid, :provider => 'facebook', :invitation_id => friend[:invitation_id])
-      - elsif current_user.invites > 0
-        = form_tag service_inviter_path(:provider => 'facebook') do
-          = select_tag(:aspect_id, options_from_collection_for_select(@all_aspects, 'id', 'name'))
-          = hidden_field_tag :uid, uid
-          = submit_tag t('.invite')
+    .stream_element
+      .right
+        -if friend[:invitation_id]
+          = t('invitations.new.already_invited')
+          %br
+          = link_to t('.resend'), service_inviter_path(:uid => uid, :provider => 'facebook', :invitation_id => friend[:invitation_id])
+        - elsif current_user.invites > 0
+          = form_tag service_inviter_path(:provider => 'facebook') do
+            = select_tag(:aspect_id, options_from_collection_for_select(@all_aspects, 'id', 'name'))
+            = hidden_field_tag :uid, uid
+            = submit_tag t('.invite')
 
-  
-    = image_tag('/images/user/default.png', :class => 'avatar')
+    
+      = image_tag('/images/user/default.png', :class => 'avatar')
 
-    %h4.name
-      = friend[:name]
+      .content
+        %span.from
+          = friend[:name]
