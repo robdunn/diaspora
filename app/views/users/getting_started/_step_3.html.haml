@@ -9,6 +9,7 @@
   .description
     = t('.description')
     -if @requests.length > 0
+      %br 
       = t('.your_inviter')
       %br
 
@@ -19,7 +20,6 @@
           = render :partial => 'people/person', :locals => {:request => pending_req, :person => person, :contact => nil}
     -unless @friends.blank?
       %br
-      = t(.)
       .contact_list
         = render :partial => 'services/finder', :locals => {:friends => @friends, :getting_started => true}
 
