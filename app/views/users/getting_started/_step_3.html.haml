@@ -13,11 +13,13 @@
       %br
 
       #people_stream.stream
-      - for pending_req in @requests
-        - person = pending_req.sender
-        
-        = render :partial => 'people/person', :locals => {:request => pending_req, :person => person, :contact => nil}
+        - for pending_req in @requests
+          - person = pending_req.sender
+          
+          = render :partial => 'people/person', :locals => {:request => pending_req, :person => person, :contact => nil}
     -unless @friends.blank?
+      %br
+      = t(.)
       .contact_list
         = render :partial => 'services/finder', :locals => {:friends => @friends, :getting_started => true}
 
