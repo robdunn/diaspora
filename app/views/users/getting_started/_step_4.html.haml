@@ -6,11 +6,18 @@
 %h1
   = t('.set_up', :name => first_name_or_username(current_user))
   .description
-    = t('.ready_to_share')
+    = "Invite people to Join t('.ready_to_share')
     %ul.inline_aspect_listing
       - for aspect in @all_aspects
         %li= aspect
+    -unless @friends.blank?
+      %br
+      = t('services.finder.invite_your_friends_from', :service => "facebook".titleize)
+      = t('shared.invitations.invitations_left', :count => @invites) 
+      %br
+      .contact_list
 
+        = render :partial => 'services/finder', :locals => {:friends => @friends, :getting_started => true}
 %br
 %br
 
