@@ -19,7 +19,7 @@ class Services::Facebook < Service
     super(post, MAX_CHARACTERS,  url)
   end
 
-  def finder
+  def finder(opts = {})
     Rails.logger.debug("event=friend_finder type=facebook sender_id=#{self.user_id}")
     response = RestClient.get("https://graph.facebook.com/me/friends", {:params => {:access_token => self.access_token}})
     data = JSON.parse(response.body)['data']
@@ -51,6 +51,14 @@ class Services::Facebook < Service
 
     contact_objects = self.user.contacts.where(:person_id => person_ids_and_uids.keys)
     contact_objects.each{|c| data_h[person_ids_and_uids[c.person_id]][:contact] = c}
+
+    if opts[:local]
+      data_h.delete_if {|key, value| value[:person].nil? }
+    end
+
+   if opts[:remote]
+      data_h.delete_if {|key, value| !value[:person].nil? }
+    end
 
     data_h
   end

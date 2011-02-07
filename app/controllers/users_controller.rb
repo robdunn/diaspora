@@ -85,9 +85,10 @@ class UsersController < ApplicationController
 
     if @step == 3
       service = current_user.services.where(:type => "Services::Facebook").first
-      @friends = service ? service.finder : {}
-      @invites = @user.invites
+      @friends = service ? service.finder(:local => true) : {}
     elsif @step == 4
+      @invites = @user.invites
+      @friends = service ? service.finder(:remote => true) : {}
       @user.getting_started = false
       @user.save
     end
