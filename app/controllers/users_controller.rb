@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     @step ||= 1
 
     if @step == 3
-      @requests = Request.where(:recipient_id => @person.id).include(:sender).all
+      @requests = Request.where(:recipient_id => @person.id).includes(:sender).all
       service = current_user.services.where(:type => "Services::Facebook").first
       @friends = service ? service.finder(:local => true) : {}
       @friends.delete_if{|key, value| @requests.any?{ |r| r.person_id == value[:person].id} }
