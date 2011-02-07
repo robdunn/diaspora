@@ -6,7 +6,7 @@
 %h1
   = t('.set_up', :name => first_name_or_username(current_user))
   .description
-    = "Invite people to Join t('.ready_to_share')
+    = t('.ready_to_share')
     %ul.inline_aspect_listing
       - for aspect in @all_aspects
         %li= aspect
