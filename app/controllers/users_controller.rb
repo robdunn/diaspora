@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    current_user.destroy
+!!J<Mouse>C!!J<Mouse>C!!J
     sign_out current_user
     flash[:notice] = I18n.t 'users.destroy'
     redirect_to root_path
@@ -90,6 +90,7 @@ class UsersController < ApplicationController
     elsif @step == 4
       @invites = @user.invites
       @friends = service ? service.finder(:remote => true) : {}
+      pp @friends
       @user.getting_started = false
       @user.save
     end
