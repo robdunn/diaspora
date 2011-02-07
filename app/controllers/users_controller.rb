@@ -86,7 +86,7 @@ class UsersController < ApplicationController
       @requests = Request.where(:recipient_id => @person.id).includes(:sender).all
       service = current_user.services.where(:type => "Services::Facebook").first
       @friends = service ? service.finder(:local => true) : {}
-      @friends.delete_if{|key, value| @requests.any?{ |r| r.person_id == value[:person].id} }
+      @friends.delete_if{|key, value| @requests.any?{ |r| r.sender_id == value[:person].id} }
     elsif @step == 4
       @invites = @user.invites
       @friends = service ? service.finder(:remote => true) : {}
