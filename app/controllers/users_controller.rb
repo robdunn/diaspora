@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-!!J<Mouse>C!!J<Mouse>C!!J
+    current_user.destroy
     sign_out current_user
     flash[:notice] = I18n.t 'users.destroy'
     redirect_to root_path
