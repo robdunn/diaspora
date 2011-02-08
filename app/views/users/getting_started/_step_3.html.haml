@@ -5,12 +5,10 @@
   = include_javascripts :aspects
 
 %h3
-  = t('.your_aspects')
+  = t('.people_on_diaspora')
   .description
     = t('.description')
     %br 
-    = t('.your_inviter')
-    %br
 
     #people_stream.stream
       - for pending_req in @requests
