@@ -21,8 +21,6 @@
         - friend = @friends[fb_id]
         = render :partial => 'people/person', :locals => {:request => friend[:request], :person => friend[:person], :contact => friend[:contact]}
 
-
-
 .submit_block
   = link_to "#{t('users.getting_started.save_and_continue')} →", getting_started_path(:step => 4), :class => "button"
 
